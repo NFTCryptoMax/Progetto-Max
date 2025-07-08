@@ -32,8 +32,8 @@ function createWindow() {
 
   // Determine the URL to load
   const startUrl = isDev 
-    ? 'http://localhost:3000' 
-    : `file://${path.join(__dirname, '../frontend/build/index.html')}`;
+  ? 'http://localhost:3000' 
+  : `file://${path.join(__dirname, 'build/index.html')}`;
 
   mainWindow.loadURL(startUrl);
 
