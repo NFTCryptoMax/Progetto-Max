@@ -1,0 +1,77 @@
+{
+  "name": "tenders-dashboard",
+  "version": "1.0.0",
+  "description": "Tenders Dashboard - Complete project management solution with GANTT chart and live countdown",
+  "main": "main.js",
+  "homepage": "./",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-builder",
+    "dist": "electron-builder --publish=never",
+    "pack": "electron-builder --dir",
+    "build-win": "electron-builder --win --x64",
+    "install-deps": "npm install"
+  },
+  "keywords": [
+    "tenders",
+    "dashboard",
+    "gantt",
+    "project-management",
+    "countdown",
+    "business"
+  ],
+  "author": "Tenders Dashboard Team",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^27.0.0",
+    "electron-builder": "^24.6.4"
+  },
+  "dependencies": {
+    "electron-is-dev": "^2.0.0"
+  },
+  "build": {
+    "appId": "com.tendersdashboard.app",
+    "productName": "Tenders Dashboard",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "../frontend/build/**/*",
+      "!../frontend/build/**/*.map"
+    ],
+    "extraFiles": [
+      {
+        "from": "../backend",
+        "to": "resources/backend",
+        "filter": ["**/*", "!**/__pycache__/**/*", "!**/*.pyc"]
+      }
+    ],
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": ["x64"]
+        },
+        {
+          "target": "portable",
+          "arch": ["x64"]
+        }
+      ],
+      "icon": "assets/icon.ico",
+      "requestedExecutionLevel": "asInvoker"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "installerIcon": "assets/icon.ico",
+      "uninstallerIcon": "assets/icon.ico"
+    },
+    "portable": {
+      "artifactName": "TendersDashboard-${version}-portable.${ext}"
+    }
+  }
+}
